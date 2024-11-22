@@ -95,7 +95,6 @@ export async function getBookedDatesByCabinId(cabinId) {
   today.setUTCHours(0, 0, 0, 0);
   today = today.toISOString();
 
-  // Getting all bookings
   const { data, error } = await supabase
     .from("bookings")
     .select("*")
@@ -107,7 +106,6 @@ export async function getBookedDatesByCabinId(cabinId) {
     throw new Error("Bookings could not get loaded");
   }
 
-  // Converting to actual dates to be displayed in the date picker
   const bookedDates = data
     .map((booking) => {
       return eachDayOfInterval({
